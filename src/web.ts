@@ -28,4 +28,12 @@ export class MediastoreWeb extends WebPlugin implements MediastorePlugin {
             reject('web is not supported');
         });
     }
+
+    async saveImage(options: { filename: string; content: Blob }): Promise<void> {
+        throw new Error('Not implemented on web');
+    }
+
+    async saveDocument(options: { filename: string; content: Blob; mimeType: string }): Promise<void> {
+        throw new Error('Not implemented on web');
+    }
 }

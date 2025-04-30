@@ -1,127 +1,67 @@
-# @agorapulse/capacitor-mediastore
+# Capacitor MediaStore Plugin
 
-Manage Android media files
+A Capacitor plugin for managing media files on Android devices.
 
-## Install
+## Installation
 
 ```bash
-# Capacitor 5
-npm install @agorapulse/capacitor-mediastore@latest
-# Capacitor 4
-npm install @agorapulse/capacitor-mediastore@0.1.0
-# Capacitor 3
-npm install @agorapulse/capacitor-mediastore@0.0.3
-
-# Then
+npm install @agorapulse/capacitor-mediastore
 npx cap sync
+```
+
+## Usage
+
+```typescript
+import { MediaStore } from '@agorapulse/capacitor-mediastore';
+
+// Save an image
+await MediaStore.saveImage({
+  filename: 'my-image.jpg',
+  content: blob // Blob containing the image data
+});
+
+// Save a document
+await MediaStore.saveDocument({
+  filename: 'my-document.pdf',
+  content: blob, // Blob containing the document data
+  mimeType: 'application/pdf'
+});
 ```
 
 ## API
 
-<docgen-index>
+### saveImage(options: SaveImageOptions): Promise<void>
 
-* [`savePicture(...)`](#savepicture)
-* [`saveToDownloads(...)`](#savetodownloads)
-* [`saveVideo(...)`](#savevideo)
-* [Interfaces](#interfaces)
+Save an image to the device's media store.
 
-</docgen-index>
+#### Options
 
-<docgen-api>
-<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+| Name     | Type   | Description                |
+|----------|--------|----------------------------|
+| filename | string | Name of the file to save   |
+| content  | Blob   | Blob containing image data |
 
-### savePicture(...)
+### saveDocument(options: SaveDocumentOptions): Promise<void>
 
-```typescript
-savePicture(options: SavePictureOptions) => Promise<SavePictureResult>
-```
+Save a document to the device's downloads folder.
 
-| Param         | Type                                                              |
-| ------------- | ----------------------------------------------------------------- |
-| **`options`** | <code><a href="#savepictureoptions">SavePictureOptions</a></code> |
+#### Options
 
-**Returns:** <code>Promise&lt;<a href="#savepictureresult">SavePictureResult</a>&gt;</code>
+| Name     | Type   | Description                  |
+|----------|--------|------------------------------|
+| filename | string | Name of the file to save     |
+| content  | Blob   | Blob containing file data    |
+| mimeType | string | MIME type of the file (optional, defaults to 'application/octet-stream') |
 
---------------------
+## Capacitor 7 Support
 
+This plugin is compatible with Capacitor 7 and follows its conventions:
 
-### saveToDownloads(...)
+- Uses ES Modules and `registerPlugin`
+- Follows the new plugin structure
+- Uses modern TypeScript features
+- Implements proper error handling
 
-```typescript
-saveToDownloads(options: SaveToDownloadsOptions) => Promise<SaveToDownloadsResult>
-```
+## License
 
-| Param         | Type                                                                      |
-| ------------- | ------------------------------------------------------------------------- |
-| **`options`** | <code><a href="#savetodownloadsoptions">SaveToDownloadsOptions</a></code> |
-
-**Returns:** <code>Promise&lt;<a href="#savetodownloadsresult">SaveToDownloadsResult</a>&gt;</code>
-
---------------------
-
-
-### saveVideo(...)
-
-```typescript
-saveVideo(options: SaveVideoOptions) => Promise<SaveVideoResult>
-```
-
-| Param         | Type                                                          |
-| ------------- | ------------------------------------------------------------- |
-| **`options`** | <code><a href="#savevideooptions">SaveVideoOptions</a></code> |
-
-**Returns:** <code>Promise&lt;<a href="#savevideoresult">SaveVideoResult</a>&gt;</code>
-
---------------------
-
-
-### Interfaces
-
-
-#### SavePictureResult
-
-| Prop      | Type                |
-| --------- | ------------------- |
-| **`uri`** | <code>string</code> |
-
-
-#### SavePictureOptions
-
-| Prop           | Type                |
-| -------------- | ------------------- |
-| **`album`**    | <code>string</code> |
-| **`filename`** | <code>string</code> |
-| **`path`**     | <code>string</code> |
-
-
-#### SaveToDownloadsResult
-
-| Prop      | Type                |
-| --------- | ------------------- |
-| **`uri`** | <code>string</code> |
-
-
-#### SaveToDownloadsOptions
-
-| Prop           | Type                |
-| -------------- | ------------------- |
-| **`filename`** | <code>string</code> |
-| **`path`**     | <code>string</code> |
-
-
-#### SaveVideoResult
-
-| Prop      | Type                |
-| --------- | ------------------- |
-| **`uri`** | <code>string</code> |
-
-
-#### SaveVideoOptions
-
-| Prop           | Type                |
-| -------------- | ------------------- |
-| **`album`**    | <code>string</code> |
-| **`filename`** | <code>string</code> |
-| **`path`**     | <code>string</code> |
-
-</docgen-api>
+MIT
